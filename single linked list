@@ -1,0 +1,134 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node{
+    int data;
+    struct node*next;
+}
+typedef structnode, NODE;
+void create();
+void insert_front(int);
+void insert_last(int);
+void delete_front();
+void delete_last();
+void display();
+struct node *head=NULL;
+int main(){
+    int item,choice;
+    create();
+    while(1){
+        printf("\nMENU\n");
+        printf("1.INSERT FRONT\n");
+        printf("2.INSERT LAST\n");
+        printf("3.DELETE FRONT\n");
+        printf("4.DELETE LAST\n");
+        printf("5.DISPLAY\n");
+        printf("6.EXIT\n");
+        printf("Enter your choice : ");
+        scanf("%d",&choice);
+        switch(choice){
+            case 1: printf("Enter the element : ");
+                    scanf("%d",&item);
+                    insert_front(item);
+                    break;
+            case 2: printf("Enter the element : ");
+                    scanf("%d",&item);
+                    insert_last(item);
+                    break;
+            case 3: delete_front();
+                    break;
+            case 4: delete_last();
+                    break;
+            case 5: display();
+                    break;
+            case 6: exit(0);
+            default:printf("Invalid number");
+        }
+    }
+}
+void create(){
+    struct node *temp,*cur;
+    char ch;
+    int item;
+    do{
+        printf("Enter the element : ");
+        scanf("%d",&item);
+        temp=(struct node*)malloc(sizeof(struct node));
+        temp->data=item;
+        if(head==NULL)
+            head=cur=temp;
+        else{
+            cur->next= temp;
+            cur=temp;
+        }
+        printf("do you wnat to continue:");
+        fflush(stdin);
+        ch=getchar();
+    }while(ch=='y'||ch=='Y');
+    temp->next=NULL;
+}
+void insert_front(int item){
+    struct node *temp;
+    temp=(struct node*)malloc(sizeof(struct node));
+    temp->data=item;
+    temp->next=head;
+    temp=head;
+}
+void insert_last(int item){
+    struct node *temp,*cur;
+    temp=(struct node*)malloc(sizeof(struct node));
+    temp->data=item;
+    if(head==NULL)
+        temp=head;
+    else{
+        cur=head;
+        while(cur->next!=NULL){
+            cur=cur->next;
+        }
+        cur->next=temp;
+    }
+    temp->next=NULL;
+}
+void delete_front(){
+    struct node *temp;
+    if(head==NULL)
+        printf("List is empty");
+    else{
+        temp=head;
+        head=head->next;
+        printf("deleted element: %d",temp->data);
+        free(temp);
+    }
+}
+void delete_last(){
+    struct node *temp,*cur;
+    if(head==NULL)
+        printf("List is empty");
+    else if(head->next==NULL){
+        temp=head;
+        head=head->next;
+        printf("deleted element: %d",temp->data);
+        free(temp);
+    }
+    else{
+        cur=head;
+        while(cur->next->next!=0){
+            cur=cur->next;
+        }
+        temp=cur->next;
+        cur->next=NULL;
+        printf("deleted element: %d",temp->data);
+        free(temp);
+    }
+}
+void display(){
+    struct node *temp=head;
+    if(head==NULL)
+        printf("List is empty");
+    else{
+        printf("LIST CONTENT : ");
+        while(temp!= NULL){
+            printf("%4d",temp->data);
+            temp=temp->next;
+        }
+    }
+}
