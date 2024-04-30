@@ -1,4 +1,4 @@
-//Implementation of queues using arrays
+/Implementation of queues using arrays
 #include<stdio.h>
 #include<stdlib.h>
 #define MAX 10
@@ -43,7 +43,7 @@ void insert(int item){
 	}
 }
 void delete(){
-	if(front=-1)
+	if(front==-1)
 		printf("Queue is empty");
 	else{
 		printf("Deleted element :%d",queue[front]);
@@ -60,6 +60,6 @@ void display(){
 	else{
 		printf("queue content : ");
 		for(i=front;i<=rear;i++)
-			printf("%d",queue[i]);
+			printf("%4d",queue[i]);
 	}
 }
