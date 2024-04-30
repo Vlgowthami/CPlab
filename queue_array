@@ -1,0 +1,64 @@
+//Implementation of queues using arrays
+#include<stdio.h>
+#include<stdlib.c>
+#define MAX 10
+int queue[MAX];
+void insert(int);
+void delete();
+void display();
+int main{
+	int choice,item;
+	while(1){
+		printf("\n*****MENU*****\n");
+		printf("1.INSERT FRONT");
+		printf("2.DELETE");
+		printf("3.DISPLAY");
+		printf("4.EXIT");
+		printf("Enter the choice: ");
+		scanf("%d",&choice);
+		switch(choice){
+			case 1:printf("Enter the element: ");
+					 scanf("%d",&item);
+					 void insert(item);
+					 break
+			case 2:void delete();
+					 break;
+			case 3:void dispay();
+					 break;
+			case 4:exit(0);
+			default:printf("invalid number");
+		}
+	}
+}
+void insert(int item){
+	if(rear=MAX-1)
+		printf("Queue  is full");
+	else{
+		rear=++rear;
+		queue[rear]=item;
+		if(front==-1)
+			front=0;
+		
+	}
+}
+void delete(){
+	if(front=-1)
+		printf("Queue is empty");
+	else{
+		printf("Deleted element :%d",queue[front]);
+		if(front==rear)
+			front=rear=-1;
+		else
+			front++;
+	}
+}
+void display()_{
+	int i;
+	if(front==-1)
+		printf("Queue is empty");
+	else{
+		printf("queue content : ");
+		for(i=front;i<=rear;i++)
+			printf("%d",queue[i]);
+	}
+}
