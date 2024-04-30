@@ -1,3 +1,4 @@
+//implementation of queues in circular
 #include<stdio.h>
 #include<stdlib.h>
 #define MAX 5
