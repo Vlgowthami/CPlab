@@ -1,0 +1,50 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define MAX 5
+int dequeue[MAX];
+int rear=-1,front=-1;
+void insert_front(int);
+void insert_rear(int);
+void delete_rear();
+void delete_front();
+void dispaly();
+int main(){
+	int choice,item;
+	while(1){
+		printf("\n********    MENU  ********\n");
+		printf("\n1.Insert front\n2.insert rear\n3.delete rear\n4.delete front\n5.Display\n6.EXIT\n");
+		printfr("Enter your choice :\n");
+		scanf("%d",&choice);
+		switch(choice){
+			case 1:printf("Enter the element :");
+			       scanf("%d",&item);
+			       insert_front(item);
+			       break;
+			case 2:printf("Enter the element :");
+			       scanf("%d",&item);
+			       insert_rear(item);
+			       break;       
+		 	case 3:delete_rear();
+		 	       break;
+		 	case 4:delete_front();
+		 	       break;
+		 	case 5:display();
+		 	       break;
+			case 6:exit(0);
+			default:printf("Invalid number");
+		}
+	}
+}
+void insert_front(int item){
+	if((rear+1)%MAX==front)
+		printf("Queue is full");
+	else if(front==0)
+		front=MAX-1;
+		dequeue[front]=item;
+	else if(front==-1)
+		front=rear=0;
+		dequeue[front]=item;
+	else{
+		front--;
+		dequeue[front]=item;
+	
