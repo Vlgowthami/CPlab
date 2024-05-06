@@ -3,8 +3,7 @@
 struct node{
     int data;
     struct node*next;
-}
-typedef structnode, NODE;
+};
 void create();
 void insert_front(int);
 void insert_last(int);
