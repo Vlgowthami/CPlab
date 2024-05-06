@@ -1,3 +1,4 @@
+//implementation of Dequeues
 #include<stdio.h>
 #include<stdlib.h>
 #define MAX 5
@@ -7,13 +8,14 @@ void insert_front(int);
 void insert_rear(int);
 void delete_rear();
 void delete_front();
-void dispaly();
+void display();
 int main(){
 	int choice,item;
 	while(1){
 		printf("\n********    MENU  ********\n");
-		printf("\n1.Insert front\n2.insert rear\n3.delete rear\n4.delete front\n5.Display\n6.EXIT\n");
-		printfr("Enter your choice :\n");
+		printf("\n1.Insert front\n2.insert rear\n");
+		printf("3.delete rear\n4.delete front\n5.Display\n6.EXIT\n");
+		printf("Enter your choice :\n");
 		scanf("%d",&choice);
 		switch(choice){
 			case 1:printf("Enter the element :");
@@ -38,13 +40,63 @@ int main(){
 void insert_front(int item){
 	if((rear+1)%MAX==front)
 		printf("Queue is full");
-	else if(front==0)
+	else if(front==0){
 		front=MAX-1;
 		dequeue[front]=item;
-	else if(front==-1)
+	}
+	else if(front==-1){
 		front=rear=0;
 		dequeue[front]=item;
+	}
 	else{
 		front--;
 		dequeue[front]=item;
-	
+	}
+}
+void insert_rear(int item){
+	if((rear+1)%MAX==front)
+		printf("Queue is full");
+	else{
+		rear=(rear+1)%MAX;
+		dequeue[rear]=item;
+		if(front==-1)
+			front=rear=0;
+	}
+}
+void delete_front(){
+	if(front==-1)
+		printf("queue is empty\n");
+	else{
+		printf("Deleted element:%d",dequeue[front]);
+		if(front=rear)
+			front=rear=-1;
+		else
+			front=(front+1)%MAX;
+	}
+}
+void delete_rear(){
+	if(front==-1)
+		printf("dequeue is Full\n");
+	else{
+		printf("Deleted element:%d",dequeue[rear]);
+		if(front==rear)
+			rear=front=-1;
+		else if (rear=0)
+			rear=MAX-1;
+		else
+			rear--;
+	}
+}
+void display(){
+	int i=front;
+	if(i==-1)
+		printf("dequeue is Empty");
+	else{	
+		printf("LIST CONTENT :");
+		while(i!=rear){
+			printf("%4d",dequeue[i]);
+			i=(i+1)%MAX;
+		}
+		printf("%d",dequeue[rear]);
+	}
+}
